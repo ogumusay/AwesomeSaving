@@ -101,6 +101,12 @@ namespace AwesomeSaving
 
         public T Load<T>(string path) where T : class
         {
+            if (!File.Exists(path))
+            {
+                Debug.LogError(path + " doesnt exist");
+                return null;
+            }
+
             StreamReader streamReader = new StreamReader(path);
             string serializedObj = streamReader.ReadToEnd();
             streamReader.Close();
